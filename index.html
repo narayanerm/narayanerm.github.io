@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Narayane Ribeiro Medeiros · Portfolio</title>
+  <meta name="description" content="Portfolio of Narayane Ribeiro Medeiros. Deep reinforcement learning for robotic control." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <div class="scroll-progress"><span class="scroll-progress-bar" id="scroll-bar"></span></div>
+
+  <nav class="topnav">
+    <a class="brand" href="#top">
+      <span class="brand-glyph">◆</span>
+      <span>Narayane R. Medeiros</span>
+    </a>
+    <div class="topnav-links">
+      <a href="#pipeline">Pipeline</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="https://github.com/narayanerm" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </nav>
+
+  <header id="top" class="hero">
+    <canvas id="g1-canvas" aria-label="Interactive 3D robotic arm that reaches toward the cursor"></canvas>
+
+    <div class="hero-overlay">
+      <p class="eyebrow">Portfolio</p>
+      <h1>
+        Teaching <span class="accent">robots</span><br />
+        new things.
+      </h1>
+      <p class="lede">
+        Deep reinforcement learning for robotic control. Reward design,
+        curriculum, simulation, sim-to-real.
+      </p>
+      <div class="hero-cta">
+        <a class="btn primary" href="#pipeline">Explore work</a>
+        <a class="btn ghost" href="https://github.com/narayanerm" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p class="hero-hint" id="hero-hint">drag to orbit</p>
+    </div>
+
+    <div class="hero-loader" id="hero-loader">
+      <div class="hero-loader-bar"><span></span></div>
+      <p>loading robot…</p>
+    </div>
+  </header>
+
+  <section id="pipeline" class="pipeline">
+    <div class="section-head">
+      <p class="eyebrow">The pipeline</p>
+      <h2>Six policies, chained.</h2>
+      <p class="section-sub">
+        Each stage is a policy warm-started from the previous one's
+        terminal-state buffer. A finite state machine snaps them together
+        into a continuous demonstration dataset that trains the final
+        student.
+      </p>
+    </div>
+
+    <ol class="pipeline-grid">
+      <li class="pipe-card" style="--i: 0">
+        <img src="assets/gifs/walk.gif" alt="G1 walking forward under a velocity command" loading="lazy" />
+        <div class="pipe-body">
+          <span class="pipe-num">01</span>
+          <h3>Walk</h3>
+          <p>Flat-terrain velocity-tracking locomotion. Foundation stage; its terminal buffer warm-starts every downstream task.</p>
+          <a class="pipe-link" href="https://github.com/narayanerm/unitree-g1-humanoid-walk" target="_blank" rel="noopener">unitree-g1-humanoid-walk</a>
+        </div>
+      </li>
+
+      <li class="pipe-card" style="--i: 1">
+        <img src="assets/gifs/reach.gif" alt="G1 reaching to 3D targets" loading="lazy" />
+        <div class="pipe-body">
+          <span class="pipe-num">02</span>
+          <h3>Reach</h3>
+          <p>Standing bimanual reach to sampled 3D targets. RMA teacher-student distills a privileged teacher into a proprioception-only student.</p>
+          <a class="pipe-link" href="https://github.com/narayanerm/unitree-g1-humanoid-reach" target="_blank" rel="noopener">unitree-g1-humanoid-reach</a>
+        </div>
+      </li>
+
+      <li class="pipe-card" style="--i: 2">
+        <img src="assets/gifs/pick.gif" alt="G1 approaching a table and grasping a box" loading="lazy" />
+        <div class="pipe-body">
+          <span class="pipe-num">03</span>
+          <h3>Pick</h3>
+          <p>Walks to a table, plants its feet, and grasps a rigid box symmetrically with both hands. Shape-filtered load + progressive unfreezing (Howard &amp; Ruder, 2018).</p>
+          <a class="pipe-link" href="https://github.com/narayanerm/unitree-g1-humanoid-pick" target="_blank" rel="noopener">unitree-g1-humanoid-pick</a>
+        </div>
+      </li>
+
+      <li class="pipe-card" style="--i: 3">
+        <img src="assets/gifs/carry.gif" alt="G1 walking while carrying a box" loading="lazy" />
+        <div class="pipe-body">
+          <span class="pipe-num">04</span>
+          <h3>Carry</h3>
+          <p>Walk-while-carrying with rigid, sloshing, and soft payloads. Sagittal-plane mirror augmentation in a body-yaw frame keeps the mirrored transitions physically consistent.</p>
+          <a class="pipe-link" href="https://github.com/narayanerm/unitree-g1-humanoid-carry" target="_blank" rel="noopener">unitree-g1-humanoid-carry</a>
+        </div>
+      </li>
+
+      <li class="pipe-card" style="--i: 4">
+        <img src="assets/gifs/place.gif" alt="G1 setting a box down on a target" loading="lazy" />
+        <div class="pipe-body">
+          <span class="pipe-num">05</span>
+          <h3>Place</h3>
+          <p>Sets the carried box down on a target surface. Broad-above / narrow-below tracking kernel on the box z-axis for controlled descent.</p>
+          <a class="pipe-link" href="https://github.com/narayanerm/unitree-g1-humanoid-place" target="_blank" rel="noopener">unitree-g1-humanoid-place</a>
+        </div>
+      </li>
+
+      <li class="pipe-card" style="--i: 5">
+        <img src="assets/gifs/fsm.gif" alt="FSM chaining walk, pick, carry, place" loading="lazy" />
+        <div class="pipe-body">
+          <span class="pipe-num">06</span>
+          <h3>FSM</h3>
+          <p>Finite-state machine seeds each phase with the previous phase's terminal state and records a unified dataset <code>(obs, action, phase)</code> for downstream BC.</p>
+          <a class="pipe-link" href="https://github.com/narayanerm/unitree-g1-humanoid-fsm" target="_blank" rel="noopener">unitree-g1-humanoid-fsm</a>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="projects" class="projects">
+    <div class="section-head">
+      <p class="eyebrow">Beyond the chain</p>
+      <h2>Other projects</h2>
+    </div>
+
+    <div class="projects-grid">
+      <article class="proj">
+        <div class="proj-media">
+          <img src="assets/gifs/warehouse.gif" alt="Warehouse pickup and delivery loop" loading="lazy" />
+        </div>
+        <h3>Warehouse loop</h3>
+        <p>Three-box pickup &amp; delivery loop between shelves using the same FSM controller on the <code>galpao</code> scene.</p>
+      </article>
+
+      <article class="proj">
+        <div class="proj-media mono">
+          <div class="proj-badge">115 obs · 29 joints · 1 MLP</div>
+        </div>
+        <h3>Monolithic policy</h3>
+        <p>Single MLP covering walk and pick phases, phase-conditioned via a 4-dim one-hot. Trained via BC on the FSM dataset, then BeyondMimic-style PPO fine-tune.</p>
+        <a class="pipe-link" href="https://github.com/narayanerm/unitree-g1-humanoid-monolithic-policy" target="_blank" rel="noopener">unitree-g1-humanoid-monolithic-policy</a>
+      </article>
+
+      <article class="proj">
+        <div class="proj-media mono">
+          <div class="proj-badge">ITA · 2026 · Thesis</div>
+        </div>
+        <h3>Undergraduate thesis</h3>
+        <p>Loco-manipulation on the Unitree G1: curriculum design, data-generation FSM, and a monolithic student policy. Supervised at Instituto Tecnológico de Aeronáutica.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="about-grid">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2>Behind the work.</h2>
+        <p>
+          I'm an electronics engineer and a computer science master's student at
+          <a href="http://www.ita.br" target="_blank" rel="noopener">Instituto Tecnológico de Aeronáutica</a>.
+          My work is deep reinforcement learning for robotic control. Reward
+          design, curriculum, and the pipeline that turns raw simulation into
+          reusable skills.
+        </p>
+        <p>
+          Open-source by default. Based in São José dos Campos, Brazil.
+        </p>
+      </div>
+
+      <aside class="about-side">
+        <dl>
+          <dt>Role</dt><dd>Engineer · researcher</dd>
+          <dt>Field</dt><dd>Robotics · reinforcement learning</dd>
+          <dt>Institution</dt><dd>ITA</dd>
+          <dt>Based</dt><dd>São José dos Campos, BR</dd>
+          <dt>Period</dt><dd>2024 / 2026</dd>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <footer id="contact" class="footer">
+    <div class="footer-inner">
+      <div>
+        <p class="eyebrow">Get in touch</p>
+        <h2>Let's talk.</h2>
+      </div>
+      <ul class="contact-list">
+        <li><a href="https://github.com/narayanerm" target="_blank" rel="noopener">github.com/narayanerm</a></li>
+        <li><a href="https://linkedin.com/in/narayanerm" target="_blank" rel="noopener">linkedin.com/in/narayanerm</a></li>
+      </ul>
+    </div>
+    <p class="footer-fine">© 2026 Narayane Ribeiro Medeiros · Built with Three.js</p>
+  </footer>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
